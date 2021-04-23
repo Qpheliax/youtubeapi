@@ -1,0 +1,51 @@
+.tv_container {
+    position: relative;
+    justify-self: center;
+    width: 500px;
+    height: 400px;
+    margin-top: 5rem;
+    border: 4px solid black;
+    background: rgb(153, 77, 6);
+    background: linear-gradient(140deg, rgba(153, 77, 6, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    box-shadow: 3px 3px 3px black;
+
+    &__kinescope {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 350px;
+        border: 2px solid black;
+        border-radius: 50% / 10%;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(223, 223, 223, 1) 51%, rgba(0, 0, 0, 1) 100%);
+        box-shadow: 3px 3px 3px black;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 350px;
+            border-radius: 50% / 10%;
+            background-size: 5px 100px;
+            background-repeat: repeat;
+            background-image: -webkit-repeating-radial-gradient(31% 21%, closest-corner, rgba(255, 255, 255, .1), rgba(0, 255, 0, .1), rgba(3, 0, 255, .1) 20%), -webkit-repeating-radial-gradient(91% 51%, closest-corner, rgba(255, 255, 255, .1), rgba(255, 255, 1, .1), rgba(055, 255, 255, .1) 20%);
+            filter: grayscale(100%);
+            animation: noise 50s ease infinite;
+        }
+    }
+}
+
+
+@keyframes noise {
+    0% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 100% 0%;
+    }
+}

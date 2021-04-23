@@ -1,0 +1,16 @@
+.video_item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px dashed black;
+    margin: 1rem;
+
+    &__image {
+        margin: .5rem;
+        max-width: 180px;
+    }
+
+    &:hover {
+        background-color: $color-2;
+    }
+}

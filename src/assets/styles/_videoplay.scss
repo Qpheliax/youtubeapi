@@ -1,0 +1,15 @@
+.frame_container {
+    position: relative;
+    justify-self: center;
+    margin-top: 5rem;
+
+    &__video {
+        position: relative;
+        top: 25px;
+        width: 400px;
+        height: 350px;
+        border: 2px solid black;
+        border-radius: 50% / 10%;
+    }
+
+}
