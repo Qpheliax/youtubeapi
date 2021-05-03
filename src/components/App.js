@@ -1,45 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
 import VideoPlay from "./VideoPlay";
 import VideoDetail from "./VideoDetail";
 import Tv from "./Tv";
-import youtube from "../apis/youtube";
+import useVideos from "../hooks/useVideos";
 
-class App extends React.Component {
-  state = { videos: [], selectedVideo: null };
-  onTermSubmit = async (term) => {
-    const response = await youtube.get("/search", {
-      params: {
-        q: term,
-      },
-    });
+const App = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videos, search] = useVideos("");
 
-    this.setState({
-      videos: response.data.items,
-      selectedVideo: null,
-    });
-  };
+  useEffect(() => {
+    setSelectedVideo(videos[0]);
+  }, [videos]);
 
-  onVideoSelect = (video) => {
-    this.setState({ selectedVideo: video });
-  };
-  render() {
-    return (
-      <>
-        <div className="main_container">
-          <SearchBar onFormSubmit={this.onTermSubmit} />
-          <Tv />
-          <VideoPlay video={this.state.selectedVideo} />
-          <VideoDetail video={this.state.selectedVideo} />
-          <VideoList
-            onVideoSelect={this.onVideoSelect}
-            videos={this.state.videos}
-          />
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <div className="main_container">
+        <SearchBar onFormSubmit={search} />
+        <Tv />
+        <VideoPlay video={selectedVideo} />
+        <VideoDetail video={selectedVideo} />
+        <VideoList onVideoSelect={setSelectedVideo} videos={videos} />
+      </div>
+    </>
+  );
+};
 
 export default App;
